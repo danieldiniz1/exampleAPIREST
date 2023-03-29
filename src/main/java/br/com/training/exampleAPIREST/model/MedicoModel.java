@@ -3,12 +3,15 @@ package br.com.training.exampleAPIREST.model;
 import br.com.training.exampleAPIREST.model.enums.EspecialidadeEnum;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Data(staticConstructor = "valueOf")
+@EqualsAndHashCode(of = "uuid")
 @Entity(name = "tb_medicos")
-@Data
 public class MedicoModel {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)

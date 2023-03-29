@@ -2,9 +2,11 @@ package br.com.training.exampleAPIREST.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data(staticConstructor = "valueOf")
+@EqualsAndHashCode(of = "uuid")
 @Entity(name = "tb_endereco")
-@Data
 public class EnderecoModel {
 
     @Id
