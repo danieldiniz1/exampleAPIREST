@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/medicos")
@@ -22,6 +25,7 @@ public class MedicoController {
     @PostMapping
     public ResponseEntity cadastrarMedico(@RequestBody MedicoRecord medicoRecord){
         LOGGER.info(medicoRecord);
-        return ResponseEntity.status(200).body(medicoFacade.criarNovoMedico(medicoRecord));
+        String id = medicoFacade.criarNovoMedico(medicoRecord);
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
     }
 }
