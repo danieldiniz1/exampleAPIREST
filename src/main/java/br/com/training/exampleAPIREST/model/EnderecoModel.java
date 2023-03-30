@@ -13,8 +13,6 @@ public class EnderecoModel {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String uuid;
     private String logradouro,numero,complemento,bairro,cidade,estado,cep;
-    @ManyToOne()
-    private MedicoModel medico;
     private Boolean isActive;
 
 
