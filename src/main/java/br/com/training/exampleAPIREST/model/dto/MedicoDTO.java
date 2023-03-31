@@ -5,7 +5,7 @@ import lombok.Data;
 @Data(staticConstructor = "valueOf")
 public class MedicoDTO {
 
-    private String nome, sobrenome, email, crm, especialidade;
+    private String nome, sobrenome, email, crm, especialidade,id;
 
 
 }

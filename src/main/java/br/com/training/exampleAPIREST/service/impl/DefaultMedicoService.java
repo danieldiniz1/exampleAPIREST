@@ -1,5 +1,6 @@
 package br.com.training.exampleAPIREST.service.impl;
 
+import br.com.training.exampleAPIREST.exception.MedicoNotFoundException;
 import br.com.training.exampleAPIREST.model.MedicoModel;
 import br.com.training.exampleAPIREST.repository.MedicoRepository;
 import br.com.training.exampleAPIREST.service.MedicoService;
@@ -31,5 +32,10 @@ public class DefaultMedicoService implements MedicoService {
     @Override
     public Page<MedicoModel> findAllMedicos(Integer page, Integer linesPerPage, String orderBy, String direction) {
         return medicoRepository.findAll(PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy));
+    }
+
+    @Override
+    public MedicoModel findMedicoById(String id) {
+        return medicoRepository.findById(id).orElseThrow(() -> new MedicoNotFoundException("não foi encontrado médico com id: " + id));
     }
 }

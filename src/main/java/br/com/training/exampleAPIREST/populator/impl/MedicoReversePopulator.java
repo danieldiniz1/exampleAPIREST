@@ -15,6 +15,7 @@ public class MedicoReversePopulator implements Populator<MedicoModel,MedicoDTO> 
     @Override
     public void populate(MedicoModel medicomodel, MedicoDTO medicoDTO) {
         validate(medicomodel,medicoDTO);
+        medicoDTO.setId(medicomodel.getUuid());
         medicoDTO.setNome(medicomodel.getDadosPessoais().getNome());
         medicoDTO.setSobrenome(medicomodel.getDadosPessoais().getSobrenome());
         medicoDTO.setEmail(medicomodel.getDadosPessoais().getEmail());

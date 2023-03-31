@@ -3,6 +3,8 @@ package br.com.training.exampleAPIREST.controller;
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
+import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,12 +31,18 @@ public class MedicoController {
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/listar-todos")
     public ResponseEntity<Page<MedicoDTO>> buscarTodosMedicos(
             @RequestParam(value = "page",defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage",defaultValue = "12") Integer linesPerPage,
             @RequestParam(value = "orderBy",defaultValue = "crm") String orderBy,
             @RequestParam(value = "direction",defaultValue = "ASC") String direction){
         return ResponseEntity.status(200).body((medicoFacade.buscarTodosMedicos(page,linesPerPage,orderBy,direction)));
+    }
+
+    @PatchMapping()
+    public ResponseEntity atualizarMedico(@RequestBody @Valid MedicoUpdateRecord record){
+        String id = medicoFacade.atualizarMedico(record);
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
     }
 }

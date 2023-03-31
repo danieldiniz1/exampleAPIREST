@@ -10,4 +10,6 @@ public interface MedicoService {
     boolean buscarMedicoPorCrm(String crm);
 
     Page<MedicoModel> findAllMedicos(Integer page, Integer linesPerPage, String orderBy, String direction);
+
+    MedicoModel findMedicoById(String id);
 }

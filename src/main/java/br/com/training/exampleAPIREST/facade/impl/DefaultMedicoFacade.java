@@ -2,10 +2,10 @@ package br.com.training.exampleAPIREST.facade.impl;
 
 import br.com.training.exampleAPIREST.exception.UserExistsException;
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
-import br.com.training.exampleAPIREST.model.DadosPessoaisModel;
 import br.com.training.exampleAPIREST.model.MedicoModel;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
+import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
 import br.com.training.exampleAPIREST.populator.Populator;
 import br.com.training.exampleAPIREST.service.EnderecoService;
 import br.com.training.exampleAPIREST.service.MedicoService;
@@ -23,6 +23,7 @@ public class DefaultMedicoFacade implements MedicoFacade {
     private static final Logger LOGGER = LogManager.getLogger();
     private Populator<MedicoRecord, MedicoModel> medicoPopulator;
     private Populator<MedicoModel,MedicoDTO> medicoReversePopulator;
+    private Populator<MedicoUpdateRecord,MedicoModel> medicoUpdatePopulator;
     private MedicoService medicoService;
     private EnderecoService enderecoService;
 
@@ -44,6 +45,18 @@ public class DefaultMedicoFacade implements MedicoFacade {
             return medicoDTO;
         });
         return medicoDTOS;
+    }
+
+    @Transactional
+    @Override
+    public String atualizarMedico(MedicoUpdateRecord record) {
+        MedicoModel medico = medicoService.findMedicoById(record.id());
+        medicoConverterUpdate(medico,record);
+        return medicoService.saveMedico(medico);
+    }
+
+    private void medicoConverterUpdate(MedicoModel medico, MedicoUpdateRecord record) {
+        medicoUpdatePopulator.populate(record,medico);
     }
 
     private String verifyOrderBy(String orderBy) {
