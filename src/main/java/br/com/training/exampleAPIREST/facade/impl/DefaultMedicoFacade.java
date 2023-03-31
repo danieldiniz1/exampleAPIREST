@@ -2,6 +2,7 @@ package br.com.training.exampleAPIREST.facade.impl;
 
 import br.com.training.exampleAPIREST.exception.UserExistsException;
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
+import br.com.training.exampleAPIREST.model.DadosPessoaisModel;
 import br.com.training.exampleAPIREST.model.MedicoModel;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
@@ -36,13 +37,19 @@ public class DefaultMedicoFacade implements MedicoFacade {
 
     @Override
     public Page<MedicoDTO> buscarTodosMedicos(Integer page, Integer linesPerPage, String orderBy, String direction) {
-        Page<MedicoModel> pageable = medicoService.findAllMedicos(page,linesPerPage,orderBy,direction);
+        Page<MedicoModel> pageable = medicoService.findAllMedicos(page,linesPerPage,verifyOrderBy(orderBy),direction);
         Page<MedicoDTO> medicoDTOS = pageable.map(medicoModel -> {
             MedicoDTO medicoDTO = MedicoDTO.valueOf();
             medicoReversePopulator.populate(medicoModel, medicoDTO);
             return medicoDTO;
         });
         return medicoDTOS;
+    }
+
+    private String verifyOrderBy(String orderBy) {
+        if (orderBy.equals("nome") | orderBy.equals("email") | orderBy.equals("sobrenome"))
+            return "dadosPessoais." + orderBy;
+        return orderBy;
     }
 
     private MedicoModel medicoConverter(MedicoRecord record, MedicoModel model) {
