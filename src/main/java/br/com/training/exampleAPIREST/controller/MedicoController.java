@@ -30,7 +30,6 @@ public class MedicoController {
     public ResponseEntity cadastrarMedico(@RequestBody MedicoRecord medicoRecord, UriComponentsBuilder uriBuilder){
         LOGGER.info(medicoRecord);
         String id = medicoFacade.criarNovoMedico(medicoRecord);
-//        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
         return ResponseEntity.created(uriBuilder.path(URL_BASE+"/{id}").buildAndExpand(id).toUri()).build();
     }
 
