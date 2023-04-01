@@ -10,4 +10,5 @@ public interface MedicoFacade {
     String criarNovoMedico(MedicoRecord record);
     Page<MedicoDTO> buscarTodosMedicos(Integer page, Integer linesPerPage, String orderBy, String direction);
     String atualizarMedico(MedicoUpdateRecord record);
+    String excluirMedico(String id);
 }

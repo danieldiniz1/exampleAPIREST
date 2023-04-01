@@ -45,4 +45,10 @@ public class MedicoController {
         String id = medicoFacade.atualizarMedico(record);
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluirMedico(@PathVariable String id){
+        LOGGER.info(String.format("O medico com id %s está com status de ativo como %s.",id,medicoFacade.excluirMedico(id)));
+        return ResponseEntity.status(200).build();
+    }
 }

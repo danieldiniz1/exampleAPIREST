@@ -20,8 +20,8 @@ public class DefaultMedicoService implements MedicoService {
     private MedicoRepository medicoRepository;
 
     @Override
-    public String saveMedico(MedicoModel model) {
-        return medicoRepository.save(model).getUuid();
+    public String saveMedico(MedicoModel medicoModel) {
+        return medicoRepository.save(medicoModel).getUuid();
     }
 
     @Override
@@ -37,5 +37,10 @@ public class DefaultMedicoService implements MedicoService {
     @Override
     public MedicoModel findMedicoById(String id) {
         return medicoRepository.findById(id).orElseThrow(() -> new MedicoNotFoundException("não foi encontrado médico com id: " + id));
+    }
+
+    @Override
+    public Page<MedicoModel> findAllMedicosAtivos(Integer page, Integer linesPerPage, String orderBy, String direction) {
+        return medicoRepository.findAllByEstaAtivoTrue(PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy));
     }
 }

@@ -22,5 +22,6 @@ public class MedicoModel {
     private List<EnderecoModel> endereco = new ArrayList<>();
     private String crm;
     private EspecialidadeEnum especialidade;
+    private Boolean estaAtivo = Boolean.TRUE;
 
 }

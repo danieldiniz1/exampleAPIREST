@@ -12,6 +12,7 @@ import br.com.training.exampleAPIREST.service.MedicoService;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class DefaultMedicoFacade implements MedicoFacade {
 
     @Override
     public Page<MedicoDTO> buscarTodosMedicos(Integer page, Integer linesPerPage, String orderBy, String direction) {
-        Page<MedicoModel> pageable = medicoService.findAllMedicos(page,linesPerPage,verifyOrderBy(orderBy),direction);
+        Page<MedicoModel> pageable = medicoService.findAllMedicosAtivos(page,linesPerPage,verifyOrderBy(orderBy),direction);
         Page<MedicoDTO> medicoDTOS = pageable.map(medicoModel -> {
             MedicoDTO medicoDTO = MedicoDTO.valueOf();
             medicoReversePopulator.populate(medicoModel, medicoDTO);
@@ -53,6 +54,15 @@ public class DefaultMedicoFacade implements MedicoFacade {
         MedicoModel medico = medicoService.findMedicoById(record.id());
         medicoConverterUpdate(medico,record);
         return medicoService.saveMedico(medico);
+    }
+
+    @Transactional
+    @Override
+    public String excluirMedico(String id) {
+        MedicoModel medico = medicoService.findMedicoById(id);
+        medico.setEstaAtivo(false);
+        medicoService.saveMedico(medico);
+        return medicoService.findMedicoById(id).getEstaAtivo().toString();
     }
 
     private void medicoConverterUpdate(MedicoModel medico, MedicoUpdateRecord record) {
