@@ -1,4 +1,4 @@
-package br.com.training.exampleAPIREST.config;
+package br.com.training.exampleAPIREST.config.database;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
