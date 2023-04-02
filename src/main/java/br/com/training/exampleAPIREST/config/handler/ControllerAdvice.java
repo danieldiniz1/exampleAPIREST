@@ -31,7 +31,7 @@ public class ControllerAdvice {
 
     @ExceptionHandler(ConversionPopulatorException.class)
     public ResponseEntity<StandartError> ConversionNotPossible(ConversionPopulatorException ex){
-        return ResponseEntity.status(404).body(populateError(ex));
+        return ResponseEntity.status(400).body(populateError(ex));
     }
 
     private StandartError populateError(Exception ex) {
