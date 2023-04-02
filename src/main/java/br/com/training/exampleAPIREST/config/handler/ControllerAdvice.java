@@ -2,6 +2,7 @@ package br.com.training.exampleAPIREST.config.handler;
 
 import br.com.training.exampleAPIREST.exception.ConversionPopulatorException;
 import br.com.training.exampleAPIREST.exception.MedicoNotFoundException;
+import br.com.training.exampleAPIREST.exception.TokenException;
 import br.com.training.exampleAPIREST.exception.UserExistsException;
 import br.com.training.exampleAPIREST.model.StandartError;
 import jakarta.persistence.EntityNotFoundException;
@@ -32,6 +33,11 @@ public class ControllerAdvice {
     @ExceptionHandler(ConversionPopulatorException.class)
     public ResponseEntity<StandartError> ConversionNotPossible(ConversionPopulatorException ex){
         return ResponseEntity.status(400).body(populateError(ex));
+    }
+
+    @ExceptionHandler(TokenException.class)
+    public ResponseEntity<StandartError> TokenError(TokenException ex){
+        return ResponseEntity.status(404).body(populateError(ex));
     }
 
     private StandartError populateError(Exception ex) {

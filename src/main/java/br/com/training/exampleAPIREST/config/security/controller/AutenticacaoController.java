@@ -1,6 +1,8 @@
 package br.com.training.exampleAPIREST.config.security.controller;
 
+import br.com.training.exampleAPIREST.config.security.service.TokenService;
 import br.com.training.exampleAPIREST.model.usuario.LoginRecord;
+import br.com.training.exampleAPIREST.model.usuario.UsuarioModel;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticacaoController {
 
     private AuthenticationManager authenticationManager;
+    private TokenService tokenService;
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid LoginRecord loginRecord){
         var token = new UsernamePasswordAuthenticationToken(loginRecord.login(),loginRecord.password());
         var authentication = authenticationManager.authenticate(token);
-        return ResponseEntity.status(200).body("Bearer AYIUSDGFOAYSIDGAS16ASFDAS5641654");
+
+        return ResponseEntity.status(200).body(tokenService.geradorToken((UsuarioModel) authentication.getPrincipal()));
     }
 }
