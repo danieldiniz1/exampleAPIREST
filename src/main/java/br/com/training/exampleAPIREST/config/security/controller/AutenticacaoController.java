@@ -1,5 +1,6 @@
 package br.com.training.exampleAPIREST.config.security.controller;
 
+import br.com.training.exampleAPIREST.model.dto.DadosTokenJWTDTO;
 import br.com.training.exampleAPIREST.config.security.service.TokenService;
 import br.com.training.exampleAPIREST.model.usuario.LoginRecord;
 import br.com.training.exampleAPIREST.model.usuario.UsuarioModel;
@@ -23,9 +24,8 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid LoginRecord loginRecord){
-        var token = new UsernamePasswordAuthenticationToken(loginRecord.login(),loginRecord.password());
-        var authentication = authenticationManager.authenticate(token);
-
-        return ResponseEntity.status(200).body(tokenService.geradorToken((UsuarioModel) authentication.getPrincipal()));
+        var authenticationToken = new UsernamePasswordAuthenticationToken(loginRecord.login(),loginRecord.password());
+        var authentication = authenticationManager.authenticate(authenticationToken);
+        return ResponseEntity.status(200).body(DadosTokenJWTDTO.valueOf(tokenService.geradorToken((UsuarioModel) authentication.getPrincipal())));
     }
 }
