@@ -65,6 +65,16 @@ public class DefaultMedicoFacade implements MedicoFacade {
         return medicoService.findMedicoById(id).getEstaAtivo().toString();
     }
 
+    @Override
+    public MedicoDTO buscarMedicoPorId(String id) {
+        return converterModelToDTO(MedicoDTO.valueOf(),medicoService.findMedicoById(id));
+    }
+
+    private MedicoDTO converterModelToDTO(MedicoDTO medicoDTO, MedicoModel medico) {
+        medicoReversePopulator.populate(medico,medicoDTO);
+        return medicoDTO;
+    }
+
     private void medicoConverterUpdate(MedicoModel medico, MedicoUpdateRecord record) {
         medicoUpdatePopulator.populate(record,medico);
     }
