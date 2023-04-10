@@ -46,7 +46,7 @@ public class TokenService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException e){
-            throw new TokenException("Error for create new token");
+            throw new TokenException("Error in token");
         }
 
     }
