@@ -1,5 +1,6 @@
 package br.com.training.exampleAPIREST.config.security;
 
+import br.com.training.exampleAPIREST.model.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,9 @@ public class SecurityConfigurations {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/login").permitAll()
-//                .requestMatchers(HttpMethod.GET,"/medicos/*").permitAll()
+                .requestMatchers(HttpMethod.GET,"/medicos/*").hasRole("USER")
+                .requestMatchers(HttpMethod.POST,"/medicos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/medicos/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
