@@ -1,5 +1,6 @@
 package br.com.training.exampleAPIREST.facade;
 
+import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
 import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
@@ -13,4 +14,6 @@ public interface MedicoFacade {
     String excluirMedico(String id);
 
     MedicoDTO buscarMedicoPorId(String id);
+
+    CepDto buscarEndecoPorCep(String cep);
 }

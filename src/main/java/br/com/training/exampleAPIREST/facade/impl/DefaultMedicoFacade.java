@@ -3,6 +3,7 @@ package br.com.training.exampleAPIREST.facade.impl;
 import br.com.training.exampleAPIREST.exception.UserExistsException;
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
 import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
 import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
@@ -68,6 +69,11 @@ public class DefaultMedicoFacade implements MedicoFacade {
     @Override
     public MedicoDTO buscarMedicoPorId(String id) {
         return converterModelToDTO(MedicoDTO.valueOf(),medicoService.findMedicoById(id));
+    }
+
+    @Override
+    public CepDto buscarEndecoPorCep(String cep) {
+        return enderecoService.buscarEnderecoPorCep(cep);
     }
 
     private MedicoDTO converterModelToDTO(MedicoDTO medicoDTO, MedicoModel medico) {

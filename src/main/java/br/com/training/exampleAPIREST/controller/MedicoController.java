@@ -1,6 +1,7 @@
 package br.com.training.exampleAPIREST.controller;
 
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
+import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
 import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
@@ -64,5 +65,12 @@ public class MedicoController {
     @GetMapping("/{id}")
     public ResponseEntity<MedicoDTO> buscarMedicoPorId(@PathVariable String id){
         return ResponseEntity.ok(medicoFacade.buscarMedicoPorId(id));
+    }
+
+
+
+    @GetMapping("/cep/{cep}")
+    public ResponseEntity<CepDto> buscarEnderecoPorCep(@PathVariable String cep){
+        return ResponseEntity.ok(medicoFacade.buscarEndecoPorCep(cep));
     }
 }
