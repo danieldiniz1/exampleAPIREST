@@ -1,7 +1,6 @@
 package br.com.training.exampleAPIREST.service.impl;
 
-import br.com.training.exampleAPIREST.model.EnderecoModel;
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.EnderecoModel;
 import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.record.EnderecoRecord;
 import br.com.training.exampleAPIREST.populator.Populator;

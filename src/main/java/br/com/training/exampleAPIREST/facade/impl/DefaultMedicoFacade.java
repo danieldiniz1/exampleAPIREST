@@ -2,7 +2,7 @@ package br.com.training.exampleAPIREST.facade.impl;
 
 import br.com.training.exampleAPIREST.exception.UserExistsException;
 import br.com.training.exampleAPIREST.facade.MedicoFacade;
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.MedicoModel;
 import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
@@ -13,7 +13,6 @@ import br.com.training.exampleAPIREST.service.MedicoService;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

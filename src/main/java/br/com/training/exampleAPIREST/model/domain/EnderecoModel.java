@@ -1,4 +1,4 @@
-package br.com.training.exampleAPIREST.model;
+package br.com.training.exampleAPIREST.model.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

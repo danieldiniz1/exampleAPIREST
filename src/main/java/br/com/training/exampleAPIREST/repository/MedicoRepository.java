@@ -1,6 +1,6 @@
 package br.com.training.exampleAPIREST.repository;
 
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.MedicoModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;

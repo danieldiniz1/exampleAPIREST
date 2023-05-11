@@ -67,8 +67,6 @@ public class MedicoController {
         return ResponseEntity.ok(medicoFacade.buscarMedicoPorId(id));
     }
 
-
-
     @GetMapping("/cep/{cep}")
     public ResponseEntity<CepDto> buscarEnderecoPorCep(@PathVariable String cep){
         return ResponseEntity.ok(medicoFacade.buscarEndecoPorCep(cep));

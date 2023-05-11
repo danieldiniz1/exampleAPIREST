@@ -1,17 +1,14 @@
 package br.com.training.exampleAPIREST.service.impl;
 
 import br.com.training.exampleAPIREST.exception.MedicoNotFoundException;
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.MedicoModel;
 import br.com.training.exampleAPIREST.repository.MedicoRepository;
 import br.com.training.exampleAPIREST.service.MedicoService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
