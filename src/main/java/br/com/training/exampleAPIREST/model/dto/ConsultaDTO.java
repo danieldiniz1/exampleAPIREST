@@ -5,5 +5,11 @@ import lombok.Data;
 @Data
 public class ConsultaDTO {
 
-    private String id, idMedico, idPaciente, data;
+    private String data;
+
+    public static ConsultaDTO valueOf(String data){
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+        consultaDTO.setData(data);
+        return consultaDTO;
+    }
 }

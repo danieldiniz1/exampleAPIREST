@@ -1,6 +1,7 @@
 package br.com.training.exampleAPIREST.model.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,4 +24,13 @@ public class ConsultaModel {
     private PacienteModel paciente;
 
     private LocalDateTime data;
+
+    public static ConsultaModel valueOf(MedicoModel medico, PacienteModel paciente, LocalDateTime data){
+        ConsultaModel consultaModel = new ConsultaModel();
+        consultaModel.setMedico(medico);
+        consultaModel.setPaciente(paciente);
+        consultaModel.setData(data);
+        return consultaModel;
+
+    }
 }

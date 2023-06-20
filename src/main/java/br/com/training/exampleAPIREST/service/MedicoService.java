@@ -14,4 +14,6 @@ public interface MedicoService {
     MedicoModel findMedicoById(String id);
 
     Page<MedicoModel> findAllMedicosAtivos(Integer page, Integer linesPerPage, String verifyOrderBy, String direction);
+
+    MedicoModel buscarMedicoDisponivel();
 }

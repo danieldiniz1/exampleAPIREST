@@ -26,6 +26,7 @@ public class ConsultaController {
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity agendar(@RequestBody @Valid ConsultaRecord consultaRecord){
         LOGGER.info(consultaRecord);
+        consultaFacade.agendarConsulta(consultaRecord);
         return ResponseEntity.status(HttpStatus.CREATED).body(consultaFacade.agendarConsulta(consultaRecord));
     }
 

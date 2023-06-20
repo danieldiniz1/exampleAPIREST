@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(MedicoNotFoundException.class)
-    public ResponseEntity<StandartErrorModel> medicoNotFound(MedicoNotFoundException ex){
+    @ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity<StandartErrorModel> medicoNotFound(ModelNotFoundException ex){
         return ResponseEntity.status(404).body(populateError(ex));
     }
 
