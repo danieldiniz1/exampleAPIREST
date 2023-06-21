@@ -2,6 +2,7 @@ package br.com.training.exampleAPIREST.controller;
 
 import br.com.training.exampleAPIREST.facade.ConsultaFacade;
 import br.com.training.exampleAPIREST.model.record.ConsultaRecord;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/consultas")
 @AllArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     private static final Logger LOGGER = LogManager.getLogger();

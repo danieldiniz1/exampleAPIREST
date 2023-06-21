@@ -5,6 +5,7 @@ import br.com.training.exampleAPIREST.model.dto.CepDto;
 import br.com.training.exampleAPIREST.model.dto.MedicoDTO;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
 import br.com.training.exampleAPIREST.model.record.MedicoUpdateRecord;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/medicos")
 @AllArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     private static final Logger LOGGER = LogManager.getLogger();
