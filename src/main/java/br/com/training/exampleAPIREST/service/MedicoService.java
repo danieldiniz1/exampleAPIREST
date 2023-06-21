@@ -1,6 +1,6 @@
 package br.com.training.exampleAPIREST.service;
 
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.MedicoModel;
 import org.springframework.data.domain.Page;
 
 public interface MedicoService {
@@ -14,4 +14,6 @@ public interface MedicoService {
     MedicoModel findMedicoById(String id);
 
     Page<MedicoModel> findAllMedicosAtivos(Integer page, Integer linesPerPage, String verifyOrderBy, String direction);
+
+    MedicoModel buscarMedicoDisponivel();
 }

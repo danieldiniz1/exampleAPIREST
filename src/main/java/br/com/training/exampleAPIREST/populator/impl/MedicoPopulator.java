@@ -1,8 +1,8 @@
 package br.com.training.exampleAPIREST.populator.impl;
 
 import br.com.training.exampleAPIREST.exception.ConversionPopulatorException;
-import br.com.training.exampleAPIREST.model.DadosPessoaisModel;
-import br.com.training.exampleAPIREST.model.MedicoModel;
+import br.com.training.exampleAPIREST.model.domain.DadosPessoaisModel;
+import br.com.training.exampleAPIREST.model.domain.MedicoModel;
 import br.com.training.exampleAPIREST.model.enums.EspecialidadeEnum;
 import br.com.training.exampleAPIREST.model.record.MedicoRecord;
 import br.com.training.exampleAPIREST.populator.Populator;

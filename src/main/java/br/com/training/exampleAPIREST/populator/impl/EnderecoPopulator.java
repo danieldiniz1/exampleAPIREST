@@ -1,7 +1,7 @@
 package br.com.training.exampleAPIREST.populator.impl;
 
 import br.com.training.exampleAPIREST.exception.ConversionPopulatorException;
-import br.com.training.exampleAPIREST.model.EnderecoModel;
+import br.com.training.exampleAPIREST.model.domain.EnderecoModel;
 import br.com.training.exampleAPIREST.model.record.EnderecoRecord;
 import br.com.training.exampleAPIREST.populator.Populator;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,7 @@
 package br.com.training.exampleAPIREST.config.handler;
 
-import br.com.training.exampleAPIREST.exception.ConversionPopulatorException;
-import br.com.training.exampleAPIREST.exception.MedicoNotFoundException;
-import br.com.training.exampleAPIREST.exception.TokenException;
-import br.com.training.exampleAPIREST.exception.UserExistsException;
-import br.com.training.exampleAPIREST.model.StandartError;
+import br.com.training.exampleAPIREST.exception.*;
+import br.com.training.exampleAPIREST.model.domain.StandartErrorModel;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,33 +12,38 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(MedicoNotFoundException.class)
-    public ResponseEntity<StandartError> medicoNotFound(MedicoNotFoundException ex){
+    @ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity<StandartErrorModel> medicoNotFound(ModelNotFoundException ex){
         return ResponseEntity.status(404).body(populateError(ex));
     }
 
     @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<StandartError> medicoExists(UserExistsException ex){
+    public ResponseEntity<StandartErrorModel> medicoExists(UserExistsException ex){
         return ResponseEntity.status(404).body(populateError(ex));
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<StandartError> NotFound(EntityNotFoundException ex){
+    public ResponseEntity<StandartErrorModel> NotFound(EntityNotFoundException ex){
         return ResponseEntity.status(404).body(populateError(ex));
     }
 
     @ExceptionHandler(ConversionPopulatorException.class)
-    public ResponseEntity<StandartError> ConversionNotPossible(ConversionPopulatorException ex){
+    public ResponseEntity<StandartErrorModel> ConversionNotPossible(ConversionPopulatorException ex){
         return ResponseEntity.status(400).body(populateError(ex));
     }
 
     @ExceptionHandler(TokenException.class)
-    public ResponseEntity<StandartError> TokenError(TokenException ex){
+    public ResponseEntity<StandartErrorModel> TokenError(TokenException ex){
         return ResponseEntity.status(404).body(populateError(ex));
     }
 
-    private StandartError populateError(Exception ex) {
-        StandartError standartError = StandartError.valueOf();
+    @ExceptionHandler(ConsultaException.class)
+    public ResponseEntity<StandartErrorModel> consultaException(ConsultaException ex){
+        return ResponseEntity.status(400).body(populateError(ex));
+    }
+
+    private StandartErrorModel populateError(Exception ex) {
+        StandartErrorModel standartError = StandartErrorModel.valueOf();
         standartError.setError(standartError.getError());
         standartError.setMessage(ex.getMessage());
         standartError.setTimeStamp(LocalDateTime.now().toString());

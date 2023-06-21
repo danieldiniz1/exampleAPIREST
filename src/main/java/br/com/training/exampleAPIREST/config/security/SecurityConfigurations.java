@@ -27,10 +27,12 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors().and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                .requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll()
 //                .requestMatchers(HttpMethod.GET,"/medicos/*").hasRole("USER")
 //                .requestMatchers(HttpMethod.POST,"/medicos").hasRole("ADMIN")
 //                .requestMatchers(HttpMethod.DELETE,"/medicos/*").hasRole("ADMIN")
